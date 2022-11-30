@@ -1,31 +1,29 @@
 #include <iostream>
 
-/*
 #include <cmath>
 using std::sqrt;
 
-#include <vector>
-using std::vector;
-*/
+class Address {
 
-//#include "AddressClass.cpp"
-#include "AddressListClass.cpp"
+private:
+  double x, y;
+
+public:
+  
+  Address() {};
+  Address( double i, double j )
+    : x(i), y(j) {};
+
+  double distance( Address other ) {
+    double dx = x - other.x;
+    double dy = y - other.y;
+    return sqrt( dx * dx + dy * dy );
+  }
+};
 
 int main() {
   
-  Address depot(0., 0.), one(2.,0.), two(1., 0.), three(3., 0.), done(0., 0.);
-
-  AddressList stack;
-  //  stack.add_address(depot);
-  stack.add_address(one);
-  stack.add_address(two);
-  stack.add_address(three);
-  // stack.add_address(done);
-
-  stack.print();
-
-  std::cerr << stack.length() << '\n';
-  std::cerr << stack.index_closest_to(depot) << '\n';
+  Address one(1., 1.), two(2., 2.);
 
   std::cerr << "Distance: "
        << one.distance(two)
