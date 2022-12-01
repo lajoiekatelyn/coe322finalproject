@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm> // for find()
 
 #include <vector>
 using std::vector;
@@ -10,13 +11,13 @@ class AddressList {
 
 private:
   vector<Address> list_of_addresses;
-  Address depot(0., 0.); // remove and add to Route class.
+  Address we_are_here; // current location
 
 public:
   AddressList() {}
 
   void add_address(Address address) {
-    list_of_addresses.push_back(address);
+    list_of_addresses.push_back(address);	
   }
 
   // Assume list_of_addresses has a length greater than 0
