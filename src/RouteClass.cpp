@@ -5,22 +5,24 @@
 class Route : public AddressList {
 private:
   Address depot = Address(0., 0.);
+  vector<Address> route = {depot, depot};
 
 public:
   Route() : AddressList() {};
   // methods to keep first and last location in place (the depot!!)
-  virtual add_address() override {
-   
-  }
+  
 };
 
 int main() {
   
   Route deliveries;
-  /*
   deliveries.add_address( Address(0,5));
   deliveries.add_address( Address(5,0));
   deliveries.add_address( Address(5,5));
+ 
+  deliveries.print();
+
+  /*
   cerr << "Travel in order: " <<
     deliveries.length() << '\n';
   assert( deliveries.size()==5 );

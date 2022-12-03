@@ -13,23 +13,29 @@ using std::vector;
 
 int main() {
   
-  Address depot(0., 0.), one(2.,0.), two(1., 0.), three(3., 0.), done(0., 0.);
+  Address one(0., 5.), two(5., 0.), three(5., 5.), four(3., 5.), five(5., 2.), six(3., 7.);
 
   AddressList stack;
   //  stack.add_address(depot);
   stack.add_address(one);
   stack.add_address(two);
   stack.add_address(three);
+  stack.add_address(four);
+  stack.add_address(five);
+  stack.add_address(six);
   // stack.add_address(done);
 
-  stack.print();
+  // AddressList newstack = stack.greedy_route();
+  // stack.print();
+  // newstack.print();
 
-  std::cerr << stack.length() << '\n';
-  std::cerr << stack.index_closest_to(depot) << '\n';
+  AddressList newstack2 = stack.opt2();
 
-  std::cerr << "Distance: "
-       << one.distance(two)
-       << '\n';
+  newstack2.print();
+    
+  std::cerr << newstack2.length() << '\n';
+  // std::cerr << newstack.length() << '\n';
+  //std::cerr << stack.index_closest_to(depot) << '\n';
 
   return 0;
 
