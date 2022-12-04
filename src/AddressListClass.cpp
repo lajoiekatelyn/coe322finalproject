@@ -125,63 +125,6 @@ public:
 
   }
 
-  //pair<AddressList, AdressList> two_trucks() {
-    
-  void two_trucks() {
-    pair<AddressList, AddressList> list_pair = populate_two_lists();
-    AddressList one = list_pair.first;
-    AddressList two = list_pair.second;
-    AddressList new_one, new_two;
-
-    one = one.opt2();
-    two = two.opt2();
-    
-    one.print();
-    std::cout << "\n";
-    two.print();
-    std::cout << "\n";
-
-    // for each index of one, iterate through two and see if swapping those two values will make one or the other shorter
-    for (int i=1; i<one.getsize()-1; i++) {
-      for (int j=1; j<two.getsize()-1; j++) {
-	// reassign new_one and new_two st they match one and two and the previous swaps are "erased"
-	new_one = one;
-	new_two = two;
-	// flip index i in new_one and index j in new_two
-	new_one.changeaddress(i, two.getlistindex(j));
-	new_two.changeaddress(j, one.getlistindex(i));
-
-	std::cout << "one vs new_one: " << one.length() << " " << new_one.length() << "\n";
-	std::cout << "two vs new_two: " << two.length() << " " << new_two.length() << "\n";
-
-
-	if (new_one.length() < one.length() && new_two.length() < two.length() ) {
-	  one = new_one;
-	  two = new_two;
-	  std::cout << "reassigning one and two \n";
-	  i = 1;
-	  j = two.getsize()-1;
-	}
-	
-	//new_one.print();
-	//std::cout << "\n";
-	//new_two.print();
-	//std::cout << "\n";
-      }
-      
-    }
-    
-    std:: cout << "lists one and two... again \n";
-    one.print();
-    std::cout << "\n";
-    two.print();
-
-  }
-
-  void prime_delivery() {
-    
-  }
-
   void print() {
     for( auto &element : list_of_addresses )
       std::cout << "( " << element.getx() << " , " << element.gety() << " )" << std::endl;

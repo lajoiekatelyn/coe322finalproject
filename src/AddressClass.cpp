@@ -9,7 +9,7 @@ class Address {
 private:
   double x, y;
   bool done = false;
-  bool prime;
+  bool prime = false;
 
 public:
 
@@ -29,6 +29,7 @@ public:
   auto getx() { return x;}
   auto gety() { return y;}
   auto getdone() { return done; }
+  auto getprime() { return prime; }
 
   void complete() { done = true; }
 };
