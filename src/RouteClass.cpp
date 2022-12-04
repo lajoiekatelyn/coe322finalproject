@@ -110,13 +110,15 @@ public:
 	new_other.print();
 	std::cout << "\n";
 	
-	Address other_add = other.getlistindex(i);
+	Address other_add = other.getlistindex(j);
 	Address route_add = route.getlistindex(i);
 	
 	// flip index i in new_one and index j in new_two
-	new_route.changeaddress(i, other.getlistindex(j));
-	new_other.changeaddress(j, route.getlistindex(i));
-	
+	if ( !other_add.getprime() && !route_add.getprime() ) { 
+	  new_route.changeaddress(i, other.getlistindex(j));
+	  new_other.changeaddress(j, route.getlistindex(i));
+	}
+
 	current_total = new_route.length() + new_other.length();
 	
 	std::cout << "newroute and newother " << new_route.length() << " " << new_other.length() << "\n";
@@ -149,8 +151,11 @@ public:
   }
 
   void print() {
-    for( auto &address : route.getlist() )
-      std::cout << "( " << address.getx() << " , " << address.gety() << " )" << std::endl;
+    for( auto &address : route.getlist() ) {
+      std::cout << "( " << address.getx() << " , " << address.gety() << " )";
+      if ( address.getprime() ) std::cout << " prime";
+      std::cout << "\n";
+    }
   }
 
 };
