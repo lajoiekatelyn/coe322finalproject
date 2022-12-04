@@ -9,12 +9,16 @@ class Address {
 private:
   double x, y;
   bool done = false;
+  bool prime;
 
 public:
 
   Address() {};
   Address( double i, double j )
     : x(i), y(j) {};
+  // add constructor for an address that indicates if it is prime or not.
+  Address( double i, double j, bool isprime )
+    :x(i), y(j), prime(isprime) {};
 
   double distance( Address other ) {
     double dx = x - other.x;
