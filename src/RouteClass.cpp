@@ -1,6 +1,6 @@
 #include <iostream>
 #include <math.h>
-
+#include <fstream>
 #include "AddressListClass.cpp"
 
 class Route : public AddressList {
@@ -153,4 +153,23 @@ public:
       std::cout << "( " << address.getx() << " , " << address.gety() << " )" << std::endl;
   }
 
+void printMATLAB (){
+  for(auto &address: route.getlist() ) {
+    std::cout << "\nWriting x points to file...";
+    std::ofstream out("xaddresses.txt", std::ios::app);
+  if (out.is_open()){
+    out <<"\n"<< address.getx();
+    out.close();
+  }
+  else std::cout << "Problem with opening file";
+
+  std::cout << "\nWriting y points to file...";
+  std::ofstream out2("yaddresses.txt", std::ios::app);
+  if (out2.is_open()){
+    out2 <<"\n"<< address.gety();
+    out2.close();
+  }
+  else std::cout << "Problem with opening file";
+}
+}
 };

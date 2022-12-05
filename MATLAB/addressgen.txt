@@ -1,0 +1,7 @@
+
+route1.add_address( Address(4.0, 7.0) );
+route1.add_address( Address(-10.0, 5.0) );
+route1.add_address( Address(-0.0, -7.0) );
+route1.add_address( Address(0.0, 3.0) );
+route1.add_address( Address(-8.0, 0.0) );
+route1.add_address( Address(7.0, 10.0) );
