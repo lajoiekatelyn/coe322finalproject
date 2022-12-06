@@ -1,34 +1,35 @@
 #include <iostream>
 
-#include <cmath>
-using std::sqrt;
-
-class Address {
-
-private:
-  double x, y;
-
-public:
-  
-  Address() {};
-  Address( double i, double j )
-    : x(i), y(j) {};
-
-  double distance( Address other ) {
-    double dx = x - other.x;
-    double dy = y - other.y;
-    return sqrt( dx * dx + dy * dy );
-  }
-};
+#include "RouteClass.cpp"
 
 int main() {
+
+  Route route1;
+
+  route1.add_address( Address(2., 0.) );
+  route1.add_address( Address(3., 2.) );
+  route1.add_address( Address(2., 3.) );
+  route1.add_address( Address(0., 2.) );
+  route1.add_random_addresses(false);
+  //route1.make_route();
   
-  Address one(1., 1.), two(2., 2.);
+  //route1.add_address( Address(0., 5.) );
+  //route1.add_address( Address(5., 0.) );
+  //route1.add_address( Address(5, 5.) );
+  
+  route1.print();
 
-  std::cerr << "Distance: "
-       << one.distance(two)
-       << '\n';
+  route1.greedy_route();
 
+  std::cout << "\n";
+  route1.print();
+  std::cout << "\n";
+
+  route1.opt2();
+
+  std::cout << "\n";
+  route1.print();
+ 
   return 0;
 
 }
