@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <random>
 
 #include "AddressListClass.cpp"
 
@@ -52,10 +53,9 @@ public:
   }
 
   void opt2() {
-    bool route_changing = true;
-    double len;
-    for (int m=1; m<route.getsize()-1; m++) {
-      bool changed = false;
+    int m = 1;
+    while ( m<route.getsize()-2 ) {
+      std::cout << "\nm = " << m << std::endl;
       AddressList new_route;
       int n = m+1;
       for (int i=0; i<route.getsize(); i++) {
@@ -69,19 +69,47 @@ public:
       }
       
       // debug
-      //new_route.print();
-      //std::cout << "new vs old " << new_route.length() << " " << route.length() << "\n\n";
+      new_route.print();
+      std::cout << "new vs old " << new_route.length() << " " << route.length() << "\n\n";
 
       if ( new_route.length() < route.length() ) {
-	bool changed = true;
-	len = route.length();
+	std::cout << "changed\n";
 	route = new_route;
-	m = 1;
+	m = 0;
       } 
+      m++;
     }
     
   }
 
+  void add_random_addresses(bool with_prime) {
+    //generate a number for how many addresses
+    std::random_device r;
+    std::default_random_engine generator{ r() };
+    std::uniform_int_distribution<int> distribution(0,25);
+    int num_addresses = distribution(generator);
+
+    for (int i=0; i<num_addresses; i++) {
+      //generate an x
+      std::uniform_real_distribution<double> distribution(-10.,10.);
+      double x = distribution(generator);
+      //generate a y
+      double y = distribution(generator);
+      if (with_prime) {
+	//give it a prime value
+	std::uniform_int_distribution<int> distribution(0,1);
+	int prime_int = distribution(generator);
+	if (prime_int == 0) {
+	  add_address( Address(x, y, false) );
+	} else { 
+	  add_address( Address(x, y, true) );
+	}
+      } else {
+	add_address( Address(x, y) );
+      }
+    }
+  }
+  
   void two_trucks( Route &other_route ){
     AddressList other = other_route.get_route();
     AddressList new_route, new_other;
