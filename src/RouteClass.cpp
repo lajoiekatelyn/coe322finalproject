@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <string>
 #include <fstream>
 #include "AddressListClass.cpp"
 
@@ -52,10 +53,9 @@ public:
   }
 
   void opt2() {
-    bool route_changing = true;
-    double len;
-    for (int m=1; m<route.getsize()-1; m++) {
-      bool changed = false;
+    int m = 1;
+    while ( m<route.getsize()-2 ) {
+      std::cout << "\nm = " << m << std::endl;
       AddressList new_route;
       int n = m+1;
       for (int i=0; i<route.getsize(); i++) {
@@ -69,19 +69,18 @@ public:
       }
       
       // debug
-      //new_route.print();
-      //std::cout << "new vs old " << new_route.length() << " " << route.length() << "\n\n";
+      new_route.print();
+      std::cout << "new vs old " << new_route.length() << " " << route.length() << "\n\n";
 
       if ( new_route.length() < route.length() ) {
-	bool changed = true;
-	len = route.length();
+	std::cout << "changed\n";
 	route = new_route;
-	m = 1;
+	m = 0;
       } 
+      m++;
     }
     
   }
-
   void two_trucks( Route &other_route ){
     AddressList other = other_route.get_route();
     AddressList new_route, new_other;
@@ -153,23 +152,28 @@ public:
       std::cout << "( " << address.getx() << " , " << address.gety() << " )" << std::endl;
   }
 
-void printMATLAB (){
-  for(auto &address: route.getlist() ) {
-    std::cout << "\nWriting x points to file...";
-    std::ofstream out("xaddresses.txt", std::ios::app);
-  if (out.is_open()){
-    out <<"\n"<< address.getx();
-    out.close();
-  }
-  else std::cout << "Problem with opening file";
+  void printMATLAB (){
+    std::string filenamestringx;
+    std::string filenamestringy;
+    std::cout<<"Insert File Name for x values";
+    std:: cin>>filenamestringx;
+    std::cout<<"Insert file name for y values";
+    std::cin>>filenamestringy; 
 
-  std::cout << "\nWriting y points to file...";
-  std::ofstream out2("yaddresses.txt", std::ios::app);
-  if (out2.is_open()){
-    out2 <<"\n"<< address.gety();
-    out2.close();
+    for(auto &address: route.getlist() ) {
+      std::ofstream out(filenamestringx, std::ios::app);
+      if (out.is_open()){
+	out <<"\n"<< address.getx();
+	out.close();
+      }
+      else std::cout << "Problem with opening file";
+      
+      std::ofstream out2(filenamestringy, std::ios::app);
+      if (out2.is_open()){
+	out2 <<"\n"<< address.gety();
+	out2.close();
+      }
+      else std::cout << "Problem with opening file";
+    }
   }
-  else std::cout << "Problem with opening file";
-}
-}
 };
