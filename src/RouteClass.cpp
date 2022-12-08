@@ -124,10 +124,11 @@ public:
     std::cout << "\n";
 
     // for each index of one, iterate through two and see if swapping those two values will make one or the other shorter
-    for (int i=1; i<route.getsize()-1; i++) {
+    int i = 1;
+    while ( i<route.getsize()-1 ) {
       std::cout << "\nPASS " << i-1 << std::endl;
-      //int j = i;
-      for (int j=1; j<other.getsize()-1; j++) {
+      int j = 1;
+      while( j<other.getsize()-1 ) {
       
 	// reassign new_one and new_two st they match one and two and the previous swaps are "erased"
 	new_route = route;
@@ -150,7 +151,8 @@ public:
 	current_total = new_route.length() + new_other.length();
 	
 	std::cout << "newroute and newother " << new_route.length() << " " << new_other.length() << "\n";
-      
+	std::cout << "new total vs total " << new_route.length() + new_other.length() << " " << route.length() + other.length() << " " << "\n";
+
 	if (new_other.length() < other.length() || new_route.length() < route.length() ) {
 	  if (current_total < smallest_total) {
 	    smallest_total = current_total;
@@ -162,8 +164,9 @@ public:
 	}
 	
 	std::cout << "out of inner if \n";
-
+	j++;
       } 
+      i++;
     }
     
     std::cout << "printing final routes (in loop)" << std::endl;
