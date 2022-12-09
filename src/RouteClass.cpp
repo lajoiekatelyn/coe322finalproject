@@ -148,6 +148,9 @@ public:
 	    new_route.changeaddress(i, other.getlistindex(j));
 	    new_other.changeaddress(j, route.getlistindex(i));
 	  }
+	} else {
+	  new_route.changeaddress(i, other.getlistindex(j));
+	  new_other.changeaddress(j, route.getlistindex(i));
 	}
 	
 	// somewhere in here, a generator with a chance of adding a new address

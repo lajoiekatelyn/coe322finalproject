@@ -4,6 +4,8 @@
 
 int main() {
 
+  bool flag = false; // not running prime delivery.
+
   Route route1;
   Route route2;
 
@@ -21,7 +23,7 @@ int main() {
   route2.greedy_route();
   route2.opt2();
 
-  route1.two_trucks( route2 );
+  route1.two_trucks( route2, flag );
 
   return 0;
 
