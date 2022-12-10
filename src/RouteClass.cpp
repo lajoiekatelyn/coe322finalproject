@@ -1,6 +1,8 @@
 #include <iostream>
 #include <math.h>
 #include <random>
+#include <fstream>
+#include <string>
 
 #include "AddressListClass.cpp"
 
@@ -166,6 +168,31 @@ public:
       std::cout << "( " << address.getx() << " , " << address.gety() << " )";
       if ( address.getprime() ) std::cout << " prime";
       std::cout << "\n";
+    }
+  }
+
+  void printMATLAB (){
+    std::string filenamestringx;
+    std::string filenamestringy;
+    std::cout<<"Insert File Name for x values";
+    std:: cin>>filenamestringx;
+    std::cout<<"Insert file name for y values";
+    std::cin>>filenamestringy; 
+    
+    for(auto &address: route.getlist() ) {
+      std::ofstream out(filenamestringx, std::ios::app);
+      if (out.is_open()){
+	out <<"\n"<< address.getx();
+	out.close();
+      }
+      else std::cout << "Problem with opening file";
+      
+      std::ofstream out2(filenamestringy, std::ios::app);
+      if (out2.is_open()){
+	out2 <<"\n"<< address.gety();
+	out2.close();
+      }
+      else std::cout << "Problem with opening file";
     }
   }
 
