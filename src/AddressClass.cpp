@@ -32,4 +32,6 @@ public:
   auto getprime() { return prime; }
 
   void complete() { done = true; }
+  void incomplete() { done = false; }
+
 };

@@ -55,6 +55,16 @@ public:
     list_of_addresses.at(index) = address;
   }
 
+  void clear_list() {
+    list_of_addresses.clear();
+  }
+
+  void reset() {
+    for (auto &element : list_of_addresses ) {
+      element.incomplete();
+    }
+  }
+
   void print() {
     for( auto &element : list_of_addresses )
       std::cout << "( " << element.getx() << " , " << element.gety() << " )" << std::endl;

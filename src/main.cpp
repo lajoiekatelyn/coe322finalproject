@@ -25,6 +25,11 @@ int main() {
 
   route1.two_trucks( route2, flag );
 
+  std::cout<< "\n";
+  route1.print();
+  std::cout<< "\n";
+  route2.print();
+
   return 0;
 
 }
