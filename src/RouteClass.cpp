@@ -55,7 +55,6 @@ public:
   void opt2() {
     int m = 1;
     while ( m<route.getsize()-2 ) {
-      //std::cout << "\nm = " << m << std::endl;
       AddressList new_route;
       int n = m+1;
       for (int i=0; i<route.getsize(); i++) {
@@ -68,12 +67,7 @@ public:
 	}
       }
       
-      // debug
-      //new_route.print();
-      //std::cout << "new vs old " << new_route.length() << " " << route.length() << "\n\n";
-
       if ( new_route.length() < route.length() ) {
-	//std::cout << "changed\n";
 	route = new_route;
 	m = 0;
       } 
@@ -116,13 +110,6 @@ public:
     double smallest_total = route.length() + other.length();
     double current_total = smallest_total;
     
-    //std::cout << "current toatal: " << current_total << "\n";
-
-    //route.print();
-    //std::cout << "\n";    
-    //other.print();
-    //std::cout << "\n";
-
     // for each index of one, iterate through two and see if swapping those two values will make one or the other shorter
     int i = 1;
     while ( i<route.getsize()-1 ) {
@@ -134,11 +121,6 @@ public:
 	new_route = route;
 	new_other = other;    
       
-	//new_route.print();
-	//std::cout << "\n";    
-	//new_other.print();
-	//std::cout << "\n";
-	
 	Address other_add = other.getlistindex(j);
 	Address route_add = route.getlistindex(i);
 	
@@ -154,34 +136,24 @@ public:
 	}
 	
 	// somewhere in here, a generator with a chance of adding a new address
-	// std::cout << something about the new package address that has been added. 
 	
 	current_total = new_route.length() + new_other.length();
 	
-	// std::cout << "newroute and newother " << new_route.length() << " " << new_other.length() << "\n";
-	// std::cout << "new total vs total " << new_route.length() + new_other.length() << " " << route.length() + other.length() << " " << "\n";
-
 	if (new_other.length() < other.length() || new_route.length() < route.length() ) {
 	  if (current_total < smallest_total) {
 	    smallest_total = current_total;
 	    route = new_route;
 	    other = new_other;
 	    i = 1;
-	    j = 1; // changed from other.getsize()-1;
+	    j = 1; 
 	  }
 	}
 	
-	//std::cout << "out of inner if \n";
 	j++;
       } 
       i++;
     }
     
-    //std::cout << "printing final routes (in loop)" << std::endl;
-    //route.print();
-    //std::cout << "\n";
-    //other.print();
-    //std::cout << "\n";
     std::cout << "final distance of two_trucks(): " << route.length() + other.length() << std::endl;
     
     // update the input other_route by pass through reference
